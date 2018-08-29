@@ -1,0 +1,45 @@
+* The Signature
+  #+BEGIN_SRC haskell
+    map :: (Functor f) => (a -> b) -> f a -> f b
+  #+END_SRC
+
+* Sum Types
+  #+BEGIN_SRC haskell
+    data Bool = True | False
+
+    data Int = 1 | 2 | 3 | ...
+
+    data DayOfTheWeek = Mon | Tue | Wed | Thu | Fri | Sat | Sun
+
+    returnCode :: Bool -> Int
+    returnCode True  = 1
+    returnCode False = 0
+
+    isTheWeekend :: DayOfTheWeek -> Bool
+    isTheWeekend Sat = True
+    isTheWeekend Sun = True
+    isTheWeekend _   = False
+  #+END_SRC
+
+* Product Types
+  #+BEGIN_SRC haskell
+    data Point = Point Int Int
+
+    data Person =
+      Person { name :: String
+             , age  :: Int
+             }
+  #+END_SRC
+
+* Higher Kinded Types
+  #+BEGIN_SRC haskell
+    data Maybe a = Just a | Nothing
+    data Pair a b = Pair a b
+  #+END_SRC
+
+* Partial Functions
+  #+BEGIN_SRC haskell
+    first :: [a] -> a
+    first []    = error "Cannot retrieve element from empty list"
+    first (x:_) = x
+  #+END_SRC
