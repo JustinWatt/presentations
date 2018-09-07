@@ -33,13 +33,26 @@
 
 * Higher Kinded Types
   #+BEGIN_SRC haskell
+    Int   :: Type
+
     data Maybe a = Just a | Nothing
+    Maybe :: Type -> Type
+
     data Pair a b = Pair a b
+    Pair :: Type -> Type -> Type
   #+END_SRC
 
-* Partial Functions
+* The Signature
   #+BEGIN_SRC haskell
-    first :: [a] -> a
-    first []    = error "Cannot retrieve element from empty list"
-    first (x:_) = x
+    map :: (Functor f) => (a -> b) -> f a -> f b
+  #+END_SRC
+
+* Specialized to Lists
+  #+BEGIN_SRC haskell
+    mapList :: (a -> b) -> [] a -> [] b
+  #+END_SRC
+
+* Operating on concrete types
+  #+BEGIN_SRC haskell
+    mapIntToChar :: (Int -> Char) -> [] Int -> [] Char
   #+END_SRC
