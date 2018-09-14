@@ -1,4 +1,6 @@
 * Reading Haskell Type Signatures
+* Reading Haskell Type Signatures
+** ..a primer
 * The Signature
   #+BEGIN_SRC haskell
     map :: (Functor f) => (a -> b) -> f a -> f b
@@ -20,7 +22,7 @@
     add5 = add 5
   #+END_SRC
 
-*  Functions
+* Functions
   #+BEGIN_SRC haskell
     add :: Int -> Int -> Int
     add x y = x + y
@@ -32,14 +34,13 @@
     five = add5 0
   #+END_SRC
 
-
 * Sum Types
   Also known as:
-   - Union Type
-   - Disjoint Union
-   - Discriminant Union
-   - Tagged Union
-   - Variant
+  - Union Type
+  - Disjoint Union
+  - Discriminant Union
+  - Tagged Union
+  - Variant
 
 * Sum Types
   #+BEGIN_SRC haskell
@@ -52,8 +53,8 @@
 
 * Product Types
   Also known as:
-   - Records
-   - Tuples
+  - Records
+  - Tuples
 
 * Product Types
   #+BEGIN_SRC haskell
@@ -80,24 +81,27 @@
     Pair :: Type -> Type -> Type
   #+END_SRC
 
-
 * Constraints
   #+BEGIN_SRC haskell
     max :: (Ord a) => a -> a -> a
   #+END_SRC
 
 * The Signature
-
   #+BEGIN_SRC haskell
     map :: (Functor f) => (a -> b) -> f a -> f b
   #+END_SRC
 
+* The Signature
 ** Specialized to Lists
    #+BEGIN_SRC haskell
-     mapList :: (a -> b) -> [] a -> [] b
+     map     :: (Functor f) => (a -> b) ->  f a ->  f b
+     mapList ::                (a -> b) -> [] a -> [] b
    #+END_SRC
 
+* The Signature
 ** Operating on concrete types
    #+BEGIN_SRC haskell
-     mapIntToChar :: (Int -> Char) -> [] Int -> [] Char
+     map          :: (Functor f) => (a -> b)      ->  f a   ->  f b
+     mapList      ::                (a -> b)      -> [] a   -> [] b
+     mapIntToChar ::                (Int -> Char) -> [] Int -> [] Char
    #+END_SRC
