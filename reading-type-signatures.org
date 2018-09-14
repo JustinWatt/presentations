@@ -1,7 +1,45 @@
+* Reading Haskell Type Signatures
 * The Signature
   #+BEGIN_SRC haskell
     map :: (Functor f) => (a -> b) -> f a -> f b
   #+END_SRC
+
+* Functions
+  #+BEGIN_SRC haskell
+    add :: Int -> Int -> Int
+    add x y = x + y
+  #+END_SRC
+
+* Functions
+  - Curried by default
+  #+BEGIN_SRC haskell
+    add :: Int -> (Int -> Int)
+    add x y = x + y
+
+    add5 :: Int -> Int
+    add5 = add 5
+  #+END_SRC
+
+*  Functions
+  #+BEGIN_SRC haskell
+    add :: Int -> Int -> Int
+    add x y = x + y
+
+    add5 :: Int -> Int
+    add5 = add 5
+
+    five :: Int
+    five = add5 0
+  #+END_SRC
+
+
+* Sum Types
+  Also known as:
+   - Union Type
+   - Disjoint Union
+   - Discriminant Union
+   - Tagged Union
+   - Variant
 
 * Sum Types
   #+BEGIN_SRC haskell
@@ -10,16 +48,12 @@
     data Int = 1 | 2 | 3 | ...
 
     data DayOfTheWeek = Mon | Tue | Wed | Thu | Fri | Sat | Sun
-
-    returnCode :: Bool -> Int
-    returnCode True  = 1
-    returnCode False = 0
-
-    isTheWeekend :: DayOfTheWeek -> Bool
-    isTheWeekend Sat = True
-    isTheWeekend Sun = True
-    isTheWeekend _   = False
   #+END_SRC
+
+* Product Types
+  Also known as:
+   - Records
+   - Tuples
 
 * Product Types
   #+BEGIN_SRC haskell
@@ -31,10 +65,14 @@
              }
   #+END_SRC
 
+* Kinds
+* Concrete types
+  #+BEGIN_SRC haskell
+    Int :: Type
+  #+END_SRC
+
 * Higher Kinded Types
   #+BEGIN_SRC haskell
-    Int   :: Type
-
     data Maybe a = Just a | Nothing
     Maybe :: Type -> Type
 
@@ -42,17 +80,24 @@
     Pair :: Type -> Type -> Type
   #+END_SRC
 
+
+* Constraints
+  #+BEGIN_SRC haskell
+    max :: (Ord a) => a -> a -> a
+  #+END_SRC
+
 * The Signature
+
   #+BEGIN_SRC haskell
     map :: (Functor f) => (a -> b) -> f a -> f b
   #+END_SRC
 
-* Specialized to Lists
-  #+BEGIN_SRC haskell
-    mapList :: (a -> b) -> [] a -> [] b
-  #+END_SRC
+** Specialized to Lists
+   #+BEGIN_SRC haskell
+     mapList :: (a -> b) -> [] a -> [] b
+   #+END_SRC
 
-* Operating on concrete types
-  #+BEGIN_SRC haskell
-    mapIntToChar :: (Int -> Char) -> [] Int -> [] Char
-  #+END_SRC
+** Operating on concrete types
+   #+BEGIN_SRC haskell
+     mapIntToChar :: (Int -> Char) -> [] Int -> [] Char
+   #+END_SRC
